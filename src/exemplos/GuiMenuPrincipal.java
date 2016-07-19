@@ -1,27 +1,15 @@
 package exemplos;
 
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class GuiMenuPrincipal extends JFrame{
 
     private Container contentPane;
     private JMenuBar mnBarra;
     private JMenu mnArquivo, mnExemplos;
-    private JMenuItem miSair, miBotao;
+    private JMenuItem miSair, miBotao, miCaixaOpcao;
     
     public GuiMenuPrincipal(){
         inicializarComponentes();
@@ -38,12 +26,14 @@ private void inicializarComponentes(){
     mnExemplos = new JMenu("Exemplos");
     miSair = new JMenuItem("SAIR");
     miBotao = new JMenuItem("BOTÃO");
+    miCaixaOpcao = new JMenuItem("Caixa de Opcao");
     
     mnArquivo.setMnemonic('A');
     mnExemplos.setMnemonic('E');
     
     mnArquivo.add(miSair);
     mnExemplos.add(miBotao);
+    mnExemplos.add(miCaixaOpcao);
     mnBarra.add(mnArquivo);
     mnBarra.add(mnExemplos);
     setJMenuBar(mnBarra);
@@ -63,12 +53,21 @@ private void inicializarComponentes(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //JOptionPane.showMessageDialog(null, "BOTÃO");  
                 GuiBotao botao = new GuiBotao();
                 contentPane.removeAll();
                 contentPane.add(botao);
                 contentPane.validate();
             
+            }
+        });
+        miCaixaOpcao.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GuiCaixaOpcao opcao = new GuiCaixaOpcao();
+                contentPane.removeAll();
+                contentPane.add(opcao);
+                contentPane.validate();
             }
         });
         
@@ -84,6 +83,7 @@ private void inicializarComponentes(){
         frame.setVisible(true);      
         
     }
+    
     
     
     
